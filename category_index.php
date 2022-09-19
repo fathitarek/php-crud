@@ -23,7 +23,7 @@ while ($row=mysqli_fetch_assoc($result)) {
     echo "<td>".$row['name']."</td>";
     echo "<td> <img src='".$row['image']."'  style='width: 10%;height: 10%;'></td>";
     echo "<td> <a  class='btn btn-danger' href='delete.php?id=".$row['id']."'> Delete</a>
-    <a  class='btn btn-warning' href='edit.php?id=".$row['id']."'> Edit</a>
+    <a  class='btn btn-warning' href='category_edit.php?id=".$row['id']."'> Edit</a>
     <a  class='btn btn-primary' href='category_show.php?id=".$row['id']."'> Show</a>
  
     </td>";

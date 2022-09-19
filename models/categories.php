@@ -23,8 +23,15 @@ class categories extends database{
 // query  connection , id  // get $_GET['']
     }
 
-    public function edit(){
-
+    public function update($c,$name,$id,$image=null){
+        if ($image!=null) {
+            $sql="update  categories  set name='".$name."' , image='".$image."' where id=".$id;
+            
+        }else{
+        $sql="update  categories  set name='".$name."' where id=".$id;
+        // die($sql);
+        }
+        return  mysqli_query($c,$sql);
     }
 
 }
