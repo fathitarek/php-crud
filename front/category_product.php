@@ -59,36 +59,7 @@ if (!isset($_SESSION['name_session'])) {
     </div>
   </nav>
 
-  <!-- Masthead -->
-  <header class="masthead">
-    <div class="container h-100">
-      <div class="row h-100 align-items-center justify-content-center text-center">
-        <div class="col-lg-10 align-self-end">
-          <h1 class="text-uppercase text-white font-weight-bold">Your Favorite Source of Free Bootstrap Themes</h1>
-          <hr class="divider my-4">
-        </div>
-        <div class="col-lg-8 align-self-baseline">
-          <p class="text-white-75 font-weight-light mb-5">Start Bootstrap can help you build better websites using the Bootstrap framework! Just download a theme and start customizing, no strings attached!</p>
-          <a class="btn btn-primary btn-xl js-scroll-trigger" href="#about">Find Out More</a>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <!-- About Section -->
-  <section class="page-section bg-primary" id="about">
-    <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-8 text-center">
-          <h2 class="text-white mt-0">We've got what you need!</h2>
-          <hr class="divider light my-4">
-          <p class="text-white-50 mb-4">Start Bootstrap has everything you need to get your new website up and running in no time! Choose one of our open source, free to download, and easy to use themes! No strings attached!</p>
-          <a class="btn btn-light btn-xl js-scroll-trigger" href="#services">Get Started!</a>
-        </div>
-      </div>
-    </div>
-  </section>
-
+ 
   <!-- Services Section -->
   <section class="page-section" id="services">
     <div class="container">
@@ -96,24 +67,36 @@ if (!isset($_SESSION['name_session'])) {
       <hr class="divider my-4">
       <div class="row">
         <?php
-include_once '../models/categories.php';
-$category = new categories();
+include_once '../models/products.php';
+$category = new products();
 $conn = $category->connect();
 
-$result = $category->get_All($conn);  
+$result = $category->get_products_catgeory($conn,$_GET['id']);
 while ($row=mysqli_fetch_assoc($result)) { 
  
         ?>
         <div class="col-lg-3 col-md-6 text-center">
           <div class="mt-5">
-            <!-- <i class="fas fa-4x fa-gem text-primary mb-4"></i> -->
-            <img src="../<?php echo $row['image'];?>" style="width: 40%;height: 30%;">
-             <a href="category_product.php?id=<?php echo $row['id'];?>" ><h3 class="h4 mb-2"><?php echo $row['name'];?></h3></a>
+            <i class="fas fa-4x fa-gem text-primary mb-4"></i>
+             <a href="category_product.php" ><h3 class="h4 mb-2"><?php echo $row['name'];?></h3></a>
+             <a href="add_cart.php?product_id=<?php echo $row['id'];?>" class=" btn btn-primary">add to cart</a>
             <!-- <p class="text-muted mb-0">Our themes are updated regularly to keep them bug free!</p> -->
           </div>
         </div>
 
         <?php } ?>
+
+        <!-- carts -->
+
+<h2>my carts</h2>
+
+<?php
+$result = $category->get_carts($conn,$_SESSION['id_session']);
+while ($row=mysqli_fetch_assoc($result)) { 
+?>
+<?php echo $row['name'];?>
+<?php } ?>
+        <!-- end -->
         <!-- <div class="col-lg-3 col-md-6 text-center">
           <div class="mt-5">
             <i class="fas fa-4x fa-laptop-code text-primary mb-4"></i>
