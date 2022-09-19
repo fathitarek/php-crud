@@ -8,6 +8,7 @@ $result=$user->login($conn,$_POST['email'],md5($_POST['password']));
         while($row= mysqli_fetch_array($result)){
             $_SESSION['id_session']= $row['id'];
             $_SESSION['name_session']=$row[1];
+            $_SESSION['role_session']=$row['role'];
         // var_dump($_SESSION);
         // die();
         }

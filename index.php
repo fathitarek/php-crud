@@ -35,6 +35,10 @@ if(isset($_GET['reg'])&&$_GET['reg']==0){
       <input type="text" name="name" placeholder="name"/>
       <input type="password"  name="password" placeholder="password"/>
       <input type="text"  name="email" placeholder="email address"/>
+      <select name="role" class="form-select">
+        <option value="Manager">Manager</option>
+        <option value="Client">client</option>
+      </select>
       <button>create</button>
       <p class="message">Already registered? <a href="#">Sign In</a></p>
     </form>
